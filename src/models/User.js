@@ -14,7 +14,7 @@ const UserSchema = new Schema({
 
     registration: {
         type: String,
-        required: true
+        //required: true
     },
 
     //Diz se é voluntário (1), admin (2), ou comum (0). 
