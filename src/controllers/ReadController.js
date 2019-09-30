@@ -3,12 +3,12 @@ const User = require('../models/User')
 
 module.exports = {
     async store(req, res) {
-        const { cpflogged } = req.headers
-        const { cpfread } = req.params
+        const { reglogged } = req.headers
+        const { regread } = req.params
         const { name, readAt } = req.body
 
-        const loggedUser = await User.findOne({cpf: cpflogged})
-        const readUser = await User.findOne({cpf: cpfread})
+        const loggedUser = await User.findOne({registration: reglogged})
+        const readUser = await User.findOne({registration: regread})
 
         const permissionLogged = loggedUser.operator
         const permissionRead = readUser.operator
@@ -18,7 +18,7 @@ module.exports = {
             readUser.events.push({
                 name: name,
                 readAt: readAt,
-                readBy: cpflogged
+                readBy: reglogged
             })
 
             await readUser.save()

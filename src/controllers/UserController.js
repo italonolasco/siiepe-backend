@@ -2,9 +2,9 @@ const User = require('../models/User')
 
 module.exports = {
     async login(req, res) {
-        const { cpf } = req.body
+        const { _id } = req.body
         
-        const loggedUser = await User.findOne({cpf})
+        const loggedUser = await User.findOne({_id})
         const permissionLogged = loggedUser.operator
 
         if(permissionLogged == "1" || permissionLogged == "2") {
@@ -15,9 +15,9 @@ module.exports = {
     },
     
     async store(req, res) {
-        const { name, cpf, registration, operator } = req.body
+        const { _id, name, cpf, registration, operator } = req.body
 
-        const userExists = await User.findOne({cpf})
+        const userExists = await User.findOne({_id})
 
         if(userExists) {
             return res.json(userExists)
