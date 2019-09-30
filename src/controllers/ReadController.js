@@ -7,14 +7,12 @@ module.exports = {
         const { regread } = req.params
         const { name, readAt } = req.body
 
-        const loggedUser = ''
-
         if(logged.length == 11){
-            loggedUser = await User.findOne({cpf: logged})
+            const loggedUser = await User.findOne({cpf: logged})
         }
 
         else if(logged.length == 4) {  
-            loggedUser = await User.findOne({registration: logged}) 
+            const loggedUser = await User.findOne({registration: logged}) 
         }
 
         const readUser = await User.findOne({registration: regread})
