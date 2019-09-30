@@ -1,7 +1,8 @@
 const User = require('../models/User')
 
 module.exports = {
-    async login(req, res) {
+    //Função não será utilizada
+    /*async login(req, res) {
         const { _id } = req.body
         
         const loggedUser = await User.findOne({_id})
@@ -12,7 +13,7 @@ module.exports = {
         }
 
         return res.json({ok: false })
-    },
+    },*/
     
     async store(req, res) {
         const { _id, name, cpf, registration, operator } = req.body
