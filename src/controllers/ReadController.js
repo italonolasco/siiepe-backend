@@ -5,9 +5,10 @@ module.exports = {
     async store(req, res) {
         const { reglogged } = req.headers
         const { regread } = req.params
-        const { name, readAt } = req.body
-
+        const { name, userfunction, readAt } = req.body
+    
         const loggedUser = await User.findOne({registration: reglogged})
+
         const readUser = await User.findOne({registration: regread})
 
         const permissionLogged = loggedUser.operator
@@ -15,11 +16,21 @@ module.exports = {
 
         if((permissionLogged == "1" && permissionRead == "0") || permissionLogged == "2") {
 
-            readUser.events.push({
-                name: name,
-                readAt: readAt,
-                readBy: reglogged
-            })
+            if(userfunction === 'Apresentador' || userfunction === 'Debatedor') {
+                readUser.events.push({
+                    name: name,
+                    readAt: readAt,
+                    readBy: reglogged
+                })
+            }
+
+            else if(userfunction === 'Ouvinte') {
+                readUser.events.push({
+                    readAt: readAt,
+                    readBy: reglogged
+                })                
+            }
+
 
             await readUser.save()
     

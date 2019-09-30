@@ -6,16 +6,10 @@ const UserSchema = new Schema({
         required: true,
     },
 
-    cpf: {
-        type: String,
-        minlength: 11,
-		maxlength: 11
-    },
-
     registration: {
         type: String,
-        minlength: 4,
-        maxlength: 4,
+        minlength: 5,
+        maxlength: 5,
         required: true
     },
 
