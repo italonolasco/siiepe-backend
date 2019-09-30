@@ -14,6 +14,8 @@ const UserSchema = new Schema({
 
     registration: {
         type: String,
+        minlength: 4,
+        maxlength: 4,
         required: true
     },
 

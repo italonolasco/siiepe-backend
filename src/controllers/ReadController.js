@@ -3,11 +3,18 @@ const User = require('../models/User')
 
 module.exports = {
     async store(req, res) {
-        const { reglogged } = req.headers
+        const { logged } = req.headers
         const { regread } = req.params
         const { name, readAt } = req.body
 
-        const loggedUser = await User.findOne({registration: reglogged})
+        if(logged.length == 11){
+            const loggedUser = await User.findOne({cpf: logged})
+        }
+
+        else if(logged.length == 4) {  
+            const loggedUser = await User.findOne({registration: logged}) 
+        }
+
         const readUser = await User.findOne({registration: regread})
 
         const permissionLogged = loggedUser.operator
