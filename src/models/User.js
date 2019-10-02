@@ -20,6 +20,10 @@ const UserSchema = new Schema({
     },
 
     events: [{
+        userfunction: {
+            type: String
+        },
+        
         name: {
             type: String
         },
@@ -29,6 +33,10 @@ const UserSchema = new Schema({
         },
         
         readBy: {
+            type: String
+        },
+
+        shift: {
             type: String
         }
     }],
