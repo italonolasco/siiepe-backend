@@ -3,7 +3,7 @@ const routes = express.Router()
 const UserController = require('./controllers/UserController')
 const ReadController = require('./controllers/ReadController')
 
-//routes.post('/users/login', UserController.login)
+routes.get('/users/certificate', UserController.certificate)
 routes.post('/users/store', UserController.store)
 routes.post('/users/:regread/read', ReadController.store)
 

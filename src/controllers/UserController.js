@@ -1,19 +1,11 @@
 const User = require('../models/User')
 
 module.exports = {
-    //Função não será utilizada
-    /*async login(req, res) {
-        const { _id } = req.body
-        
-        const loggedUser = await User.findOne({_id})
-        const permissionLogged = loggedUser.operator
+    async certificate(req, res) {
+        const users = await User.find()
 
-        if(permissionLogged == "1" || permissionLogged == "2") {
-            return res.json(loggedUser)
-        }
-
-        return res.json({ok: false })
-    },*/
+        return res.json(res)
+    },
     
     async store(req, res) {
         const { name, cpf, registration, operator } = req.body
@@ -33,4 +25,18 @@ module.exports = {
 
         return res.json(user)
     }
+
+    //Função não será utilizada
+    /*async login(req, res) {
+        const { _id } = req.body
+        
+        const loggedUser = await User.findOne({_id})
+        const permissionLogged = loggedUser.operator
+
+        if(permissionLogged == "1" || permissionLogged == "2") {
+            return res.json(loggedUser)
+        }
+
+        return res.json({ok: false })
+    },*/
 }

@@ -13,7 +13,7 @@ const UserSchema = new Schema({
         required: true
     },
 
-    //Diz se é voluntário (1), admin (2), ou comum (0). 
+    //Diz se é admin (2), colaborador (1), ou comum (0). 
     operator: {
         type: String,
         required: true,
