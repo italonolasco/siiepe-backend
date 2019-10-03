@@ -63,7 +63,9 @@ module.exports = {
                         readBy: reglogged,
                         shift: shift
                     })
-        
+                    
+                    readUser.counter++
+
                     await readUser.save()
                     return res.json(readUser) 
                 }
@@ -79,6 +81,8 @@ module.exports = {
                     shift: shift
                 })
     
+                readUser.counter++
+
                 await readUser.save()
                 return res.json(readUser)
             }
