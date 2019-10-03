@@ -2,9 +2,7 @@ const User = require('../models/User')
 
 module.exports = {
     async certificate(req, res) {
-        const { user } = req.headers
-
-        const users = await User.find({registration: { $ne : user }})
+        const users = await User.find({})
 
         return res.json(users)
     },
