@@ -4,7 +4,7 @@ module.exports = {
     async certificate(req, res) {
         const { user } = req.headers
 
-        const users = await User.findOne()
+        const users = await User.find()
 
         return res.json(users)
     },
