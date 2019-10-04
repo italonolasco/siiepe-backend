@@ -10,7 +10,7 @@ module.exports = {
     },
     
     async store(req, res) {
-        const { name, registration, operator } = req.body
+        const { name, registration, operator, userevent } = req.body
 
         const userExists = await User.findOne({registration})
 
@@ -21,7 +21,8 @@ module.exports = {
         const user = await User.create({
             name,
             registration,
-            operator
+            operator,
+            userevent
         })
 
         return res.json(user)
