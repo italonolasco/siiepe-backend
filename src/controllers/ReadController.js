@@ -55,7 +55,7 @@ module.exports = {
                     }
                 }, [flag])
                                
-                if(!flag) {
+                if(!flag && shift != '') {
                     readUser.events.push({
                         userfunction: userfunction,
                         name: name,
