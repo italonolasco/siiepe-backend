@@ -19,6 +19,11 @@ const UserSchema = new Schema({
         required: true,
     },
 
+    userevent: {
+        type: String,
+        required: true
+    },
+
     events: [{
         userfunction: {
             type: String
