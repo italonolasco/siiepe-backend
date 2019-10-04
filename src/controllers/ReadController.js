@@ -14,7 +14,7 @@ module.exports = {
         const shiftM2 = '12:30'
         const shiftA1 = '13:30'
         const changeA = '15:30'
-        const shiftA2 = '18:00'
+        const shiftA2 = '18:15'
     
         const loggedUser = await User.findOne({registration: reglogged})
         const readUser = await User.findOne({registration: regread})
