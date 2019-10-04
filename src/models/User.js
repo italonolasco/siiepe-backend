@@ -8,8 +8,6 @@ const UserSchema = new Schema({
 
     registration: {
         type: String,
-        minlength: 5,
-        maxlength: 5,
         required: true
     },
 
