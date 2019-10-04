@@ -72,7 +72,7 @@ module.exports = {
                 
             }
 
-            else {
+            else if (shift != '') {
                 readUser.events.push({
                     userfunction: userfunction,
                     name: name,
