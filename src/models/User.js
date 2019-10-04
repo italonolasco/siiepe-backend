@@ -20,8 +20,7 @@ const UserSchema = new Schema({
     },
 
     userevent: {
-        type: String,
-        required: true
+        type: String
     },
 
     events: [{
