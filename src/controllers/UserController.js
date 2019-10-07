@@ -1,13 +1,27 @@
 const User = require('../models/User')
 
 module.exports = {
-    async certificate(req, res) {
+    async certificatePresenter(req, res) {
         let usersCertificate = []
 
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.userevent == 'SIEPE' && element.counter >= 8) {
+            if((element.userevent == 'ENPOS' || element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'CEG' || element.userevent == 'CEC') && element.counter >= 1) {
+                usersCertificate.push(element)
+            }   
+        })
+
+        return res.json(usersCertificate)
+    },
+
+    async certificateListener(req, res) {
+        let usersCertificate = []
+
+        const users = await User.find({})
+
+        users.forEach(element => {           
+            if(element.counter >= 8) {
                 usersCertificate.push(element)
             }
         })
