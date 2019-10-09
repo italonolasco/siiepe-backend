@@ -7,8 +7,8 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.event != []) {
-                element.forEach(event => {
+            if(element.events.length != 0) {
+                element.events.forEach(event => {
                     if((event.name == 'ENPOS' || event.name == 'CIC' || event.name == 'CIT' || event.name == 'CEG' || event.name == 'CEC') && event.userfunction == 'A' && element.counter >= 1) {
                         usersCertificate.push(element)
                     }   
