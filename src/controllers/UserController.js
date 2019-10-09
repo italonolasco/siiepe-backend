@@ -7,11 +7,13 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            element.forEach(event => {
-                if((event.name == 'ENPOS' || event.name == 'CIC' || event.name == 'CIT' || event.name == 'CEG' || event.name == 'CEC') && event.userfunction == 'A' && element.counter >= 1) {
-                    usersCertificate.push(element)
-                }   
-            })
+            if(element.event != []) {
+                element.forEach(event => {
+                    if((event.name == 'ENPOS' || event.name == 'CIC' || event.name == 'CIT' || event.name == 'CEG' || event.name == 'CEC') && event.userfunction == 'A' && element.counter >= 1) {
+                        usersCertificate.push(element)
+                    }   
+                })
+            }
         })
 
         return res.json(usersCertificate)
