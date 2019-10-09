@@ -10,7 +10,7 @@ module.exports = {
             if(element.events.length != 0) {
                 element.events.forEach(event => {
                     if((event.name == 'ENPOS' || event.name == 'CIC' || event.name == 'CIT' || event.name == 'CEG' || event.name == 'CEC') && event.userfunction == 'A' && element.counter >= 1) {
-                        usersCertificate.push(element)
+                        usersCertificate.push({registro: element.registration, nome: element.name, evento: event.name})
                     }   
                 })
             }
@@ -26,7 +26,7 @@ module.exports = {
 
         users.forEach(element => {           
             if(element.counter >= 8) {
-                usersCertificate.push(element)
+                usersCertificate.push({registro: element.registration, nome: element.name})
             }
         })
 
