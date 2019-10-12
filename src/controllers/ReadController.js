@@ -6,6 +6,8 @@ module.exports = {
         const { reglogged } = req.headers
         const readings = req.body
 
+        res.json({ok: true })
+
         let response = false
         let flag = false
 
@@ -72,6 +74,6 @@ module.exports = {
             }
         }, [response])
 
-       return res.json(response) 
+      //  return res.json(response) 
     } 
 }
