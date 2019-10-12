@@ -8,7 +8,6 @@ module.exports = {
 
         res.json({ok: true })
 
-        let response = false
         let flag = false
 
         let dateRead = ''        
@@ -64,16 +63,11 @@ module.exports = {
     
                     await readUser.save()
                 }
-
-                response = true
             }
     
             else {
                 console.log("Você não possui autorização")
-                response = false
             }
-        }, [response])
-
-      //  return res.json(response) 
+        })
     } 
 }
