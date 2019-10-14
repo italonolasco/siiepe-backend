@@ -8,7 +8,7 @@ module.exports = {
 
         users.forEach(element => {
             if(element.events.length != 0) {
-                if(element.userfunction == 'C') {
+                if(element.operator == '1') {
                     if(element.counter >= 6 && element.counter < 12) {
                         
                         usersCertificate.push({tipo: 'C', registro: element.registration, nome: element.name, evento: element.userevent, horas: 20})
