@@ -1,6 +1,29 @@
 const User = require('../models/User')
 
 module.exports = {
+    async certificateCollaborator(req, res) {
+        let usersCertificate = []
+
+        const users = await User.find({})
+
+        users.forEach(element => {
+            if(element.events.length != 0) {
+                if(element.userfunction == 'C') {
+                    if(element.counter >= 6 && element.counter < 12) {
+                        
+                        usersCertificate.push({tipo: 'C', registro: element.registration, nome: element.name, evento: element.userevent, horas: 20})
+                    }
+                    
+                    else if(element.counter >= 12) {
+                        usersCertificate.push({tipo: 'C', registro: element.registration, nome: element.name, evento: element.userevent, horas: 40}) 
+                    }
+                }
+            }
+        })
+
+        return res.json(usersCertificate)        
+    },
+    
     async certificatePresenter(req, res) {
         let usersCertificate = []
 
@@ -9,8 +32,8 @@ module.exports = {
         users.forEach(element => {
             if(element.events.length != 0) {
                 element.events.forEach(event => {
-                    if((event.name == 'ENPOS' || event.name == 'CIC' || event.name == 'CIT' || event.name == 'CEG' || event.name == 'CEC') && event.userfunction == 'A' && element.counter >= 1) {
-                        usersCertificate.push({registro: element.registration, nome: element.name, evento: event.name})
+                    if(event.userfunction == 'A' && element.counter >= 1) {
+                        usersCertificate.push({tipo: 'A', registro: element.registration, nome: element.name, evento: event.name})
                     }   
                 })
             }
@@ -25,8 +48,12 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {           
-            if(element.counter >= 8) {
-                usersCertificate.push({registro: element.registration, nome: element.name})
+            if(element.counter >= 8 && element.counter < 12) {
+                usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 20})
+            }
+
+            else if (element.counter >= 12) {
+                usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 40})
             }
         })
 

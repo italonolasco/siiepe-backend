@@ -19,13 +19,11 @@ module.exports = {
             const {qrCodeData, name, userfunction, readAt, shift } = element
             const readUser = await User.findOne({registration: qrCodeData})
 
-            console.log(readUser)
-
             if(readUser) {
                 const permissionRead = readUser.operator
     
                 const date = new Date(readAt).toUTCString().substring(5, 16)
-                
+
                 if((permissionLogged == "1" && permissionRead == "0") || permissionLogged == "2") {
                     if(readUser.events.length != 0) {
                         readUser.events.forEach(async element => {

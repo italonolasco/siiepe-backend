@@ -16,12 +16,16 @@ const UserSchema = new Schema({
     //Diz se é admin (2), colaborador (1), ou comum (0). 
     operator: {
         type: String,
-        required: true,
+        required: true
     },
 
     userevent: {
         type: String,
-        required: true,
+        required: true
+    },
+
+    userfunction: {
+        type: String
     },
 
     events: [{
@@ -48,7 +52,7 @@ const UserSchema = new Schema({
 
     counter: {
         type: Number,
-        default: 0,
+        default: 0
     },
 },
 {
