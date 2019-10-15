@@ -3,7 +3,6 @@ const User = require('../models/User')
 
 module.exports = {
     async store(req, res) {      
-        const { reglogged } = req.headers
         const readings = req.body
 
         res.json({ok: true }) //Sempre que recebido será enviado um ok (200). Do jeito implementado, nunca será enviado algo diferente
@@ -11,15 +10,14 @@ module.exports = {
         let flag = false
 
         let dateRead = ''        
-    
-        const loggedUser = await User.findOne({registration: reglogged})
-        const permissionLogged = loggedUser.operator
         
         readings.forEach(async element => {
-            const {qrCodeData, name, userfunction, readAt, shift } = element
+            const {qrCodeData, name, userfunction, readAt, readBy, shift } = element
             const readUser = await User.findOne({registration: qrCodeData})
 
             if(readUser) {
+                const loggedUser = await User.findOne({registration: readBy})
+                const permissionLogged = loggedUser.operator
                 const permissionRead = readUser.operator
     
                 const date = new Date(readAt).toUTCString().substring(5, 16)
@@ -40,7 +38,7 @@ module.exports = {
                                 userfunction: userfunction,
                                 name: name,
                                 readAt: readAt,
-                                readBy: reglogged,
+                                readBy: readBy,
                                 shift: shift
                             })
                             
@@ -56,7 +54,7 @@ module.exports = {
                             userfunction: userfunction,
                             name: name,
                             readAt: readAt,
-                            readBy: reglogged,
+                            readBy: readBy,
                             shift: shift
                         })
             
