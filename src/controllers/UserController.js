@@ -7,8 +7,8 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.events.length != 0) {
-                if(element.operator == '1') {
+            if(element.operator == '1') {
+                if(element.events.length != 0) {
                     if(element.counter >= 6 && element.counter < 12) {
                         
                         usersCertificate.push({tipo: 'C', registro: element.registration, nome: element.name, evento: element.userevent, horas: 20})
@@ -48,12 +48,8 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {           
-            if(element.counter >= 8 && element.counter < 12) {
+            if(element.counter >= 8) {
                 usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 20})
-            }
-
-            else if (element.counter >= 12) {
-                usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 40})
             }
         })
 
