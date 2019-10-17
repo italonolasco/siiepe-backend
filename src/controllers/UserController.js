@@ -23,6 +23,24 @@ module.exports = {
 
         return res.json(usersCertificate)        
     },
+
+    async certificateDebater(req, res) {
+        let usersCertificate = []
+
+        const users = await User.find({})
+
+        users.forEach(element => {
+            if(element.events.length != 0) {
+                element.events.forEach(event => {
+                    if(event.userfunction == 'D' && element.counter >= 1) {
+                        usersCertificate.push({tipo: 'D', registro: element.registration, nome: element.name, evento: event.name})
+                    }  
+                }) 
+            }
+        })
+
+        return res.json(usersCertificate)
+    },
     
     async certificatePresenter(req, res) {
         let usersCertificate = []
@@ -31,11 +49,13 @@ module.exports = {
 
         users.forEach(element => {
             if(element.events.length != 0) {
-                element.events.forEach(event => {
-                    if(event.userfunction == 'A' && element.counter >= 1) {
-                        usersCertificate.push({tipo: 'A', registro: element.registration, nome: element.name, evento: event.name})
-                    }   
-                })
+                if(element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'CEC' || element.userevent == 'CEG' || element.userevent == 'ENPOS') {
+                    element.events.forEach(event => {
+                        if(event.userfunction == 'A' && element.counter >= 1) {
+                            usersCertificate.push({tipo: 'A', registro: element.registration, nome: element.name, evento: event.name})
+                        }  
+                    })
+                } 
             }
         })
 
