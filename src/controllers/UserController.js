@@ -7,7 +7,7 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.operator == '1') {
+            if(element.operator == '1' && element.userevent != 'TEC') {
                 if(element.events.length != 0) {
                     if(element.counter >= 6 && element.counter < 12) {
                         
@@ -41,6 +41,20 @@ module.exports = {
 
         return res.json(usersCertificate)
     },
+
+    async certificateListener(req, res) {
+        let usersCertificate = []
+
+        const users = await User.find({})
+
+        users.forEach(element => {           
+            if(element.counter >= 8) {
+                usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 20})
+            }
+        })
+
+        return res.json(usersCertificate)
+    },
     
     async certificatePresenter(req, res) {
         let usersCertificate = []
@@ -61,21 +75,26 @@ module.exports = {
 
         return res.json(usersCertificate)
     },
-
-    async certificateListener(req, res) {
+    
+    async certificateTec(req, res) {
         let usersCertificate = []
 
         const users = await User.find({})
 
-        users.forEach(element => {           
-            if(element.counter >= 8) {
-                usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 20})
+        users.forEach(element => {
+            if(element.operator == '1' && element.userevent == 'TEC') {
+                if(element.events.length != 0) {
+                    if(element.counter >= 6) {
+                        
+                        usersCertificate.push({tipo: 'T', registro: element.registration, nome: element.name, evento: element.userevent, horas: 20})
+                    }
+                }
             }
         })
 
-        return res.json(usersCertificate)
+        return res.json(usersCertificate)  
     },
-    
+
     async store(req, res) {
         const { name, registration, operator, userevent } = req.body
 
