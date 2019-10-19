@@ -7,7 +7,7 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.operator == '1' && element.userevent != 'TEC') {
+            if(element.operator == '1') {
                 if(element.events.length != 0) {
                     if(element.counter >= 6 && element.counter < 12) {
                         
@@ -30,12 +30,14 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.events.length != 0) {
-                element.events.forEach(event => {
-                    if(event.userfunction == 'D' && element.counter >= 1) {
-                        usersCertificate.push({tipo: 'D', registro: element.registration, nome: element.name, evento: event.name})
-                    }  
-                }) 
+            if(element.userfunction == 'DEB') {
+                if(element.events.length != 0) {
+                    element.events.forEach(event => {
+                        if(event.userfunction == 'D' && element.counter >= 1) {
+                            usersCertificate.push({tipo: 'D', registro: element.registration, nome: element.name, evento: event.name})
+                        }  
+                    }) 
+                }
             }
         })
 
@@ -48,8 +50,10 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {           
-            if(element.counter >= 8) {
-                usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 20})
+            if(element.userfunction == 'AO') {
+                if(element.counter >= 8) {
+                    usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name, horas: 20})
+                }
             }
         })
 
@@ -62,14 +66,16 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.events.length != 0) {
-                if(element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'CEC' || element.userevent == 'CEG' || element.userevent == 'ENPOS') {
-                    element.events.forEach(event => {
-                        if(event.userfunction == 'A' && element.counter >= 1) {
-                            usersCertificate.push({tipo: 'A', registro: element.registration, nome: element.name, evento: event.name})
-                        }  
-                    })
-                } 
+            if(element.userfunction == 'AO') {
+                if(element.events.length != 0) {
+                    if(element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'CEC' || element.userevent == 'CEG' || element.userevent == 'ENPOS') {
+                        element.events.forEach(event => {
+                            if(event.userfunction == 'A' && element.counter >= 1) {
+                                usersCertificate.push({tipo: 'A', registro: element.registration, nome: element.name, evento: event.name})
+                            }  
+                        })
+                    } 
+                }
             }
         })
 
@@ -82,7 +88,7 @@ module.exports = {
         const users = await User.find({})
 
         users.forEach(element => {
-            if(element.operator == '1' && element.userevent == 'TEC') {
+            if(element.userfunction == 'TEC') {
                 if(element.events.length != 0) {
                     if(element.counter >= 6) {
                         
