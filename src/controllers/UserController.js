@@ -96,7 +96,7 @@ module.exports = {
     },
 
     async store(req, res) {
-        const { name, registration, operator, userevent } = req.body
+        const { name, registration, operator, userevent, userfunction } = req.body
 
         const userExists = await User.findOne({registration})
 
@@ -108,7 +108,8 @@ module.exports = {
             name,
             registration,
             operator,
-            userevent
+            userevent,
+            userfunction
         })
 
         return res.json(user)
