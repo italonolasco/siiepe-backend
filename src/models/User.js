@@ -25,8 +25,7 @@ const UserSchema = new Schema({
     },
 
     userfunction: {
-        type: String,
-        required: true
+        type: String
     },
     
     events: [{
