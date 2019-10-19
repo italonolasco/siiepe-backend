@@ -24,6 +24,7 @@ module.exports = {
         return res.json(usersCertificate)        
     },
 
+    //Dúvida em como funciona!! Para cada evento debatido 1 certificado? ou 1 geral do siiepe?
     async certificateDebater(req, res) {
         let usersCertificate = []
 
