@@ -5,6 +5,8 @@ const UserController = require('./controllers/UserController')
 const ReadController = require('./controllers/ReadController') 
 const CertificateController = require('./controllers/CertificateController')
 const CCEController = require('./controllers/CCEController')
+const CEGController = require('./controllers/CEGController')
+const CECController = require('./controllers/CECController')
 const TccData = require('./controllers/TccData')
 
 routes.post('/users/store', UserController.store)
@@ -18,6 +20,14 @@ routes.get('/users/certificate-presenter', CertificateController.certificatePres
 routes.get('/users/collaborator-cce', CCEController.certificateCollaborator)
 routes.get('/users/debater-cce', CCEController.certificateDebater)
 routes.get('/users/presentation-cce', CCEController.certificatePresenter)
+
+routes.get('/users/collaborator-ceg', CEGController.certificateCollaborator)
+routes.get('/users/debater-ceg', CEGController.certificateDebater)
+routes.get('/users/presentation-ceg', CEGController.certificatePresenter)
+
+routes.get('/users/collaborator-cec', CECController.certificateCollaborator)
+routes.get('/users/debater-cec', CECController.certificateDebater)
+routes.get('/users/presentation-cec', CECController.certificatePresenter)
 
 routes.get('/users/presentation', TccData.getPresentation)
 routes.get('/users/listener', TccData.getListener)

@@ -7,11 +7,11 @@ module.exports = {
         const users = await User.find({operator: 1})
 
         users.forEach(element => {
-            if(element.events.length >= 4 && element.events.length < 10 && (element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'ENPOS')) {   
+            if(element.events.length >= 4 && element.events.length < 8 && (element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'ENPOS')) {   
                 usersCertificate.push({tipo: 'C', registro: element.registration, nome: element.name, evento: element.userevent, horas: 20})
             }
             
-            else if(element.events.length >= 10 && (element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'ENPOS')) {
+            else if(element.events.length >= 8 && (element.userevent == 'CIC' || element.userevent == 'CIT' || element.userevent == 'ENPOS')) {
                 usersCertificate.push({tipo: 'C', registro: element.registration, nome: element.name, evento: element.userevent, horas: 40})
             } 
         })
