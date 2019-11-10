@@ -37,7 +37,7 @@ module.exports = {
         const users = await User.find({userfunction: 'AO'})
 
         users.forEach(element => {           
-            if(element.events.length >= 4) {
+            if(element.events.length >= 3) {
                 usersCertificate.push({tipo: 'O', registro: element.registration, nome: element.name})
             }
         })
@@ -47,7 +47,6 @@ module.exports = {
     
     async certificatePresenter(req, res) {
         let usersCertificate = []
-       // let counter = 0
 
         const users = await User.find({userfunction: 'AO'})
 
@@ -59,7 +58,6 @@ module.exports = {
             })
         })
 
-       // return res.json(counter)
         return res.json(usersCertificate)
     },
 }
