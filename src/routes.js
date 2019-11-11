@@ -20,14 +20,18 @@ routes.get('/users/certificate-presenter', CertificateController.certificatePres
 routes.get('/users/collaborator-cce', CCEController.certificateCollaborator)
 routes.get('/users/debater-cce', CCEController.certificateDebater)
 routes.get('/users/presentation-cce', CCEController.certificatePresenter)
+routes.get('/users/listener-cce', CCEController.certificateListener)
+routes.get('/users/listener-siiepe', CCEController.certificateSIIEPE)
 
 routes.get('/users/collaborator-ceg', CEGController.certificateCollaborator)
 routes.get('/users/debater-ceg', CEGController.certificateDebater)
 routes.get('/users/presentation-ceg', CEGController.certificatePresenter)
+routes.get('/users/listener-ceg', CEGController.certificateListener)
 
 routes.get('/users/collaborator-cec', CECController.certificateCollaborator)
 routes.get('/users/debater-cec', CECController.certificateDebater)
 routes.get('/users/presentation-cec', CECController.certificatePresenter)
+routes.get('/users/listener-cec', CECController.certificateListener)
 
 routes.get('/users/presentation', TccData.getPresentation)
 routes.get('/users/listener', TccData.getListener)

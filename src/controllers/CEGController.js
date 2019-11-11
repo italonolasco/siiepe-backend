@@ -50,4 +50,18 @@ module.exports = {
 
         return res.json(usersCertificate)
     },
+
+    async certificateListener(req, res) {
+        let usersCertificate = []
+
+        const users = await User.find({userfunction: 'AO'})
+
+        users.forEach(element => {           
+            if(element.events.length != 0  && element.userevent == 'CEG') {
+                usersCertificate.push({registro: element.registration, nome: element.name, leituras: element.events.length})
+            }
+        })
+
+        return res.json(usersCertificate)
+    }
 }
