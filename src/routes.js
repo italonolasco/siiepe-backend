@@ -33,9 +33,19 @@ routes.get('/users/debater-cec', CECController.certificateDebater)
 routes.get('/users/presentation-cec', CECController.certificatePresenter)
 routes.get('/users/listener-cec', CECController.certificateListener)
 
+//TCC ------------------------------------------------------------
+
 routes.get('/users/presentation', TccData.getPresentation)
 routes.get('/users/listener', TccData.getListener)
 routes.get('/users/collaborator', TccData.getCollaborator)
 routes.get('/users/debater', TccData.getDebater)
+
+routes.get('/users/readers', TccData.getReaders)
+routes.get('/users/inscritos-por-evento', TccData.getInscritosPorEventos)
+routes.get('/users/inscritos-cic', TccData.getInscritosCIC)
+routes.get('/users/inscritos-cit', TccData.getInscritosCIT)
+routes.get('/users/inscritos-cec', TccData.getInscritosCEC)
+routes.get('/users/inscritos-ceg', TccData.getInscritosCEG)
+routes.get('/users/inscritos-enpos', TccData.getInscritosENPOS)
 
 module.exports = routes

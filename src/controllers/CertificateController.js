@@ -12,7 +12,7 @@ module.exports = {
             }
         })
 
-        return res.json(usersCertificate)        
+        return res.json(usersCertificate.length)        
     },
 
     async certificateDebater(req, res) {
@@ -42,7 +42,7 @@ module.exports = {
             }
         })
 
-        return res.json(usersCertificate)
+        return res.json(usersCertificate.length)
     },
     
     async certificatePresenter(req, res) {

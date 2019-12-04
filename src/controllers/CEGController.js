@@ -37,6 +37,7 @@ module.exports = {
     
     async certificatePresenter(req, res) {
         let usersCertificate = []
+        let ceg = 0
 
         const users = await User.find({userfunction: 'AO'})
 
@@ -44,24 +45,29 @@ module.exports = {
             element.events.forEach(event => {
                 if(event.userfunction == 'A'  && event.name == 'CEG') {    
                     usersCertificate.push({tipo: 'A', registro: element.registration, nome: element.name, evento: event.name})
+                    ceg++
                 }
             })
         })
 
+        console.log(ceg)
         return res.json(usersCertificate)
     },
 
     async certificateListener(req, res) {
         let usersCertificate = []
+        let ceg = 0
 
         const users = await User.find({userfunction: 'AO'})
 
         users.forEach(element => {           
             if(element.events.length != 0  && element.userevent == 'CEG') {
-                usersCertificate.push({registro: element.registration, nome: element.name, leituras: element.events.length})
+                usersCertificate.push({registro: element.registration, nome: element.name, leituras: element.events})
+                ceg++
             }
         })
 
+        console.log(ceg)
         return res.json(usersCertificate)
     }
 }
